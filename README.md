@@ -24,7 +24,7 @@ input2.Wheel(-120).Wait(1000).ClickKey(ScanKey.S);// Adding input commands (requ
 input2.Execute();
  
 var input3 = new InputSequence();
-input3.Add(new KeyboardCommand(DirectKey.T, KeyboardEvent.KeyClick)); // Adding input commands in sequence (requires InputSharp.InputCommands)
+input3.Add(new KeyboardCommand(ScanKey.T, KeyboardEvent.KeyClick)); // Adding input commands in sequence (requires InputSharp.InputCommands)
 input3.Add(new MouseCommand(0,0, MouseMovement.SetPos));
 input3.Execute();
 ```
