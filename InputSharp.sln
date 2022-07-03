@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InputSharp", "InputSharp\InputSharp.csproj", "{363E9C8B-D0AB-46F2-9838-D6BF873CC84A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{89880E4B-2FAF-48CF-9394-3B57D4B63A61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{363E9C8B-D0AB-46F2-9838-D6BF873CC84A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{363E9C8B-D0AB-46F2-9838-D6BF873CC84A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{363E9C8B-D0AB-46F2-9838-D6BF873CC84A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{363E9C8B-D0AB-46F2-9838-D6BF873CC84A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89880E4B-2FAF-48CF-9394-3B57D4B63A61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89880E4B-2FAF-48CF-9394-3B57D4B63A61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89880E4B-2FAF-48CF-9394-3B57D4B63A61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89880E4B-2FAF-48CF-9394-3B57D4B63A61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F0542D6-9C25-4796-B202-C966856456D5}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+EndGlobal
