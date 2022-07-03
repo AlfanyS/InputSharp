@@ -2,6 +2,7 @@
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
 [![Nuget](https://img.shields.io/nuget/v/KMInput?label=NuGet&style=plastic)]()
+
 InputSharp is a library and nuget package that allows you to simulate keyboard and mouse clicks in the Windows operating system.
 
 # Examples
@@ -28,4 +29,4 @@ input3.Add(new MouseCommand(0,0, MouseMovement.SetPos));
 input3.Execute();
 ```
 # Realisation
-- Library uses P/Invoke and Windows user32.dll SendInput(). Method can use scan codes and virtual keys to identify keyboard keys (ScanKey and VirtualKey in code respectively).
+- Library use P/Invoke and Windows user32.dll SendInput(). Method can use scan codes and virtual keys to identify keyboard keys (ScanKey and VirtualKey in code respectively).
