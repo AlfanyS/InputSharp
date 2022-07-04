@@ -1,14 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Title>InputSharp</Title>
-    <Authors>Alfany</Authors>
-    <Description>Package that allows you to simulate keyboard and mouse clicks in the Windows operating system.</Description>
-    <PackageTags>automation, input, simulation</PackageTags>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>InputSharp</Title>
+        <Authors>Alfany</Authors>
+        <Description>Package that allows you to simulate keyboard and mouse clicks in the Windows operating system.</Description>
+        <PackageTags>automation, input, simulation</PackageTags>
+        <PackageProjectUrl>https://github.com/AlfanyS/InputSharp</PackageProjectUrl>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/AlfanyS/InputSharp/master/LICENSE.md</PackageLicenseUrl>
+    </PropertyGroup>
 
 </Project>

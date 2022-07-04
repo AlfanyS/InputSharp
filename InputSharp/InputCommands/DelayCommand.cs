@@ -1,4 +1,5 @@
 ﻿namespace InputSharp.InputCommands;
+
 public sealed class DelayCommand : InputCommand
 {
     public readonly int delay;
@@ -12,6 +13,7 @@ public sealed class DelayCommand : InputCommand
     {
         Task.Delay(delay).Wait();
     }
+
     public override string ToString()
     {
         return $"{delay}ms Delay";

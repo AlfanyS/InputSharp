@@ -2,7 +2,8 @@
 
 public sealed class IfCommand : MultiCommand
 {
-    private Func<bool> _predicate;
+    private readonly Func<bool> _predicate;
+
     public IfCommand(Func<bool> predicate, params InputCommand[] commands) : base(commands)
     {
         _predicate = predicate;
@@ -10,7 +11,8 @@ public sealed class IfCommand : MultiCommand
 
     protected override void ExecuteAll(InputCommand[] commands)
     {
-        if(_predicate())
-            foreach(var command in commands) command.Execute();
+        if (_predicate())
+            foreach (var command in commands)
+                command.Execute();
     }
 }

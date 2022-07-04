@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
 namespace InputSharp;
+
 internal static class NativeMethods
 {
     [DllImport("user32.dll", SetLastError = true)]
@@ -15,6 +16,7 @@ internal static class NativeMethods
     [DllImport("User32.dll")]
     internal static extern bool SetCursorPos(int x, int y);
 }
+
 public enum MouseEvent
 {
     None = 0,
@@ -31,37 +33,55 @@ public enum MouseEvent
     XUp = 0x0100,
     XClick
 }
+
 public enum MouseMovement
 {
     None,
     Move,
     SetPos
 }
+
 [StructLayout(LayoutKind.Sequential)]
 public struct Point
 {
     public int x;
     public int y;
-    public Point() { x = 0; y = 0; }
-    public Point (int x, int y)
+
+    public Point()
+    {
+        x = 0;
+        y = 0;
+    }
+
+    public Point(int x, int y)
     {
         this.x = x;
         this.y = y;
     }
-    public override string ToString() => $"x={x}, y={y}";
-    public static implicit operator Point((int x, int y) tuple) =>
-            new (tuple.x, tuple.y);
+
+    public override string ToString()
+    {
+        return $"x={x}, y={y}";
+    }
+
+    public static implicit operator Point((int x, int y) tuple)
+    {
+        return new(tuple.x, tuple.y);
+    }
+
     public void Deconstruct(out int x, out int y)
     {
         x = this.x;
         y = this.y;
     }
 }
+
 internal struct Input
 {
     public int type;
     public InputUnion u;
 }
+
 [Flags]
 internal enum InputType
 {
@@ -69,6 +89,7 @@ internal enum InputType
     Keyboard = 1,
     Hardware = 2
 }
+
 [Flags]
 internal enum KeyEvent
 {
@@ -78,6 +99,7 @@ internal enum KeyEvent
     Unicode = 0x0004,
     Scancode = 0x0008
 }
+
 [Flags]
 internal enum MouseEventF
 {
@@ -96,6 +118,7 @@ internal enum MouseEventF
     XDown = 0x0080,
     XUp = 0x0100
 }
+
 [StructLayout(LayoutKind.Sequential)]
 internal struct KeyboardInput
 {
@@ -105,6 +128,7 @@ internal struct KeyboardInput
     public uint time;
     public IntPtr dwExtraInfo;
 }
+
 [StructLayout(LayoutKind.Sequential)]
 internal struct MouseInput
 {
@@ -115,6 +139,7 @@ internal struct MouseInput
     public uint time;
     public IntPtr dwExtraInfo;
 }
+
 [StructLayout(LayoutKind.Sequential)]
 internal struct HardwareInput
 {
@@ -122,6 +147,7 @@ internal struct HardwareInput
     public ushort wParamL;
     public ushort wParamH;
 }
+
 [StructLayout(LayoutKind.Explicit)]
 internal struct InputUnion
 {
@@ -129,13 +155,14 @@ internal struct InputUnion
     [FieldOffset(0)] public KeyboardInput ki;
     [FieldOffset(0)] public HardwareInput hi;
 }
+
 /// <summary>
-/// Scan codes.
+///     Scan codes.
 /// </summary>
 public enum ScanKey
 {
     /// <summary>
-    /// Absence of key.
+    ///     Absence of key.
     /// </summary>
     None = 0x0,
     Esc = 0x01,
@@ -149,8 +176,9 @@ public enum ScanKey
     Eight = 0x09,
     Nine = 0x0A,
     Zero = 0x0B,
+
     /// <summary>
-    /// - on main keyboard.
+    ///     - on main keyboard.
     /// </summary>
     Minus = 0x0C,
     Equals = 0x0D,
@@ -168,8 +196,9 @@ public enum ScanKey
     P = 0x19,
     LBracket = 0x1A,
     RBracket = 0x1B,
+
     /// <summary>
-    /// Enter on main keyboard.
+    ///     Enter on main keyboard.
     /// </summary>
     Return = 0x1C,
     LСtrl = 0x1D,
@@ -184,8 +213,9 @@ public enum ScanKey
     L = 0x26,
     Semicolon = 0x27,
     Apostrophe = 0x28,
+
     /// <summary>
-    /// Accent grave. ` on main keyboard.
+    ///     Accent grave. ` on main keyboard.
     /// </summary>
     Grave = 0x29,
     LShift = 0x2A,
@@ -198,17 +228,20 @@ public enum ScanKey
     N = 0x31,
     M = 0x32,
     Comma = 0x33,
+
     /// <summary>
-    /// . on main keyboard.
+    ///     . on main keyboard.
     /// </summary>
     Dot = 0x34,
+
     /// <summary>
-    /// / on main keyboard.
+    ///     / on main keyboard.
     /// </summary>
     Slash = 0x35,
     RShift = 0x36,
+
     /// <summary>
-    /// * on numeric keypad.
+    ///     * on numeric keypad.
     /// </summary>
     Multiply = 0x37,
     LAlt = 0x38,
@@ -229,85 +262,101 @@ public enum ScanKey
     Num7 = 0x47,
     Num8 = 0x48,
     Num9 = 0x49,
+
     /// <summary>
-    ///  - on numeric keypad.
+    ///     - on numeric keypad.
     /// </summary>
     Subtract = 0x4A,
     Num4 = 0x4B,
     Num5 = 0x4C,
     Num6 = 0x4D,
+
     /// <summary>
-    /// + on numeric keypad.
+    ///     + on numeric keypad.
     /// </summary>
     Add = 0x4E,
     Num1 = 0x4F,
     Num2 = 0x50,
     Num3 = 0x51,
     Num0 = 0x52,
+
     /// <summary>
-    /// . on numeric keypad.
+    ///     . on numeric keypad.
     /// </summary>
     Decimal = 0x53,
+
     /// <summary>
-    /// &lt;&gt; or | on RT 102-key keyboard (Non-U.S.).
+    ///     &lt;&gt; or | on RT 102-key keyboard (Non-U.S.).
     /// </summary>
     OEM_102 = 0x56,
     F11 = 0x57,
     F12 = 0x58,
-    F13 = 0x64,    /*                     (NEC PC98) */
-    F14 = 0x65,    /*                     (NEC PC98) */
-    F15 = 0x66,    /*                     (NEC PC98) */
+    F13 = 0x64, /*                     (NEC PC98) */
+    F14 = 0x65, /*                     (NEC PC98) */
+    F15 = 0x66, /*                     (NEC PC98) */
+
     /// <summary>
-    /// Japanese keyboard.
+    ///     Japanese keyboard.
     /// </summary>
     Kana = 0x70,
+
     /// <summary>
-    /// ? on Brazilian keyboard.
+    ///     ? on Brazilian keyboard.
     /// </summary>
     ABNT_C1 = 0x73,
+
     /// <summary>
-    /// Japanese keyboard.
+    ///     Japanese keyboard.
     /// </summary>
     Convert = 0x79,
+
     /// <summary>
-    /// Japanese keyboard.
+    ///     Japanese keyboard.
     /// </summary>
     NoConvert = 0x7B,
+
     /// <summary>
-    /// Japanese keyboard.
+    ///     Japanese keyboard.
     /// </summary>
     Yen = 0x7D,
+
     /// <summary>
-    /// Numpad . on Brazilian keyboard.
+    ///     Numpad . on Brazilian keyboard.
     /// </summary>
     ABNT_C2 = 0x7E,
+
     /// <summary>
-    /// = on numeric keypad (NEC PC98)
+    ///     = on numeric keypad (NEC PC98)
     /// </summary>
     NumEquals = 0x8D,
+
     /// <summary>
-    /// Previous Track (DIK_CIRCUMFLEX on Japanese keyboard)
+    ///     Previous Track (DIK_CIRCUMFLEX on Japanese keyboard)
     /// </summary>
     PrevTrack = 0x90,
-    At = 0x91,    /*                     (NEC PC98) */
-    Colon = 0x92,    /*                     (NEC PC98) */
-    Underline = 0x93,    /*                     (NEC PC98) */
+    At = 0x91, /*                     (NEC PC98) */
+    Colon = 0x92, /*                     (NEC PC98) */
+    Underline = 0x93, /*                     (NEC PC98) */
+
     /// <summary>
-    /// Japanese keyboard.
+    ///     Japanese keyboard.
     /// </summary>
     Kanji = 0x94,
-    Stop = 0x95,    /*                     (NEC PC98) */
+    Stop = 0x95, /*                     (NEC PC98) */
+
     /// <summary>
-    /// Japan AX.
+    ///     Japan AX.
     /// </summary>
     Ax = 0x96,
-    Unlabeled = 0x97,    /*(J3100) */
+    Unlabeled = 0x97, /*(J3100) */
+
     /// <summary>
-    /// Next Track.
+    ///     Next Track.
     /// </summary>
     NextTrack = 0x99,
+
     /// <summary>
-    /// Enter on numeric keypad.
+    ///     Enter on numeric keypad.
     /// </summary>
     NumEnter = 0x9C,
     RCtrl = 0x9D,
@@ -315,102 +364,123 @@ public enum ScanKey
     Calculator = 0xA1,
     PlayPause = 0xA2,
     MediaStop = 0xA4,
+
     /// <summary>
-    /// Volume -.
+    ///     Volume -.
     /// </summary>
     VolumeDown = 0xAE,
+
     /// <summary>
-    /// Volume +.
+    ///     Volume +.
     /// </summary>
-    VolumeUp = 0xB0,    
+    VolumeUp = 0xB0,
     WebHome = 0xB2,
+
     /// <summary>
-    /// , on numeric keypad (NEC PC98).
+    ///     , on numeric keypad (NEC PC98).
     /// </summary>
     NumComma = 0xB3,
+
     /// <summary>
-    /// / on numeric keypad.
+    ///     / on numeric keypad.
     /// </summary>
     Divide = 0xB5,
     SYSRQ = 0xB7,
     RAlt = 0xB8,
     Pause = 0xC5,
+
     /// <summary>
-    /// Home on arrow keypad.
+    ///     Home on arrow keypad.
     /// </summary>
     Home = 0xC7,
+
     /// <summary>
-    /// UpArrow on arrow keypad.
+    ///     UpArrow on arrow keypad.
     /// </summary>
     Up = 0xC8,
+
     /// <summary>
-    /// PageUp on arrow keypad.
+    ///     PageUp on arrow keypad.
     /// </summary>
     PgUp = 0xC9,
+
     /// <summary>
-    /// LeftArrow on arrow keypad.
+    ///     LeftArrow on arrow keypad.
     /// </summary>
     Left = 0xCB,
+
     /// <summary>
-    /// RightArrow on arrow keypad.
+    ///     RightArrow on arrow keypad.
     /// </summary>
     Right = 0xCD,
+
     /// <summary>
-    /// End on arrow keypad.
+    ///     End on arrow keypad.
     /// </summary>
     End = 0xCF,
+
     /// <summary>
-    /// DownArrow on arrow keypad.
+    ///     DownArrow on arrow keypad.
     /// </summary>
     Down = 0xD0,
+
     /// <summary>
-    /// PageDown on arrow keypad.
+    ///     PageDown on arrow keypad.
     /// </summary>
     PgDn = 0xD1,
+
     /// <summary>
-    /// Insert on arrow keypad.
+    ///     Insert on arrow keypad.
     /// </summary>
     Insert = 0xD2,
+
     /// <summary>
-    /// Delete on arrow keypad.
+    ///     Delete on arrow keypad.
     /// </summary>
     Delete = 0xD3,
+
     /// <summary>
-    /// Left Windows key.
+    ///     Left Windows key.
     /// </summary>
     LWin = 0xDB,
+
     /// <summary>
-    /// Right Windows key.
+    ///     Right Windows key.
     /// </summary>
     RWin = 0xDC,
+
     /// <summary>
-    /// AppMenu key
+    ///     AppMenu key
     /// </summary>
     Apps = 0xDD,
+
     /// <summary>
-    /// System Power.
+    ///     System Power.
     /// </summary>
     Power = 0xDE,
+
     /// <summary>
-    /// System Sleep.
+    ///     System Sleep.
     /// </summary>
     Sleep = 0xDF,
+
     /// <summary>
-    /// System Wake.
+    ///     System Wake.
     /// </summary>
     Wake = 0xE3,
     WebSearch = 0xE5,
     WebFavourites = 0xE6,
     WebRefresh = 0xE7,
     WebStop = 0xE8,
-    WebForward= 0xE9,
+    WebForward = 0xE9,
     WebBack = 0xEA,
     MyComputer = 0xEB,
     Mail = 0xEC,
     MediaSelect = 0xED
 }
+
 /// <summary>
-/// May not work in 3D programs.
+///     May not work in 3D programs.
 /// </summary>
 public enum VirtualKey
 {
@@ -545,5 +615,5 @@ public enum VirtualKey
     LCONTROL = 0xA2,
     RCONTROL = 0xA3,
     LMENU = 0xA4,
-    RMENU = 0xA5,
+    RMENU = 0xA5
 }
