@@ -1,7 +1,7 @@
 # InputSharp
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 
-[![Nuget](https://img.shields.io/nuget/v/KMInput?label=NuGet&style=plastic)](https://www.nuget.org/packages/InputSharp/)
+[![Nuget](https://img.shields.io/nuget/v/InputSharp?label=NuGet&style=plastic)](https://www.nuget.org/packages/InputSharp/)
 
 InputSharp is a library and nuget package that allows you to simulate keyboard and mouse clicks in the Windows operating system.
 
