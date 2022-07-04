@@ -1,5 +1,4 @@
 ﻿using InputSharp.Extensions;
-using InputSharp.Parsers;
 
 namespace InputSharp;
 
@@ -128,12 +127,6 @@ public class InputSequenceBuilder
     public InputSequenceBuilder SetCursorPos(Point deltaVector)
     {
         _sequence.SetCursorPos(deltaVector.x, deltaVector.y);
-        return this;
-    }
-
-    public InputSequenceBuilder Parse(string text, List<CharOnKeyboard> langueage)
-    {
-        _sequence.Parse(text, langueage);
         return this;
     }
 

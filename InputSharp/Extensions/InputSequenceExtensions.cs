@@ -1,5 +1,4 @@
 ﻿using InputSharp.InputCommands;
-using InputSharp.Parsers;
 
 namespace InputSharp.Extensions;
 
@@ -132,20 +131,6 @@ public static class InputSequenceExtensions
     public static InputSequence SetCursorPos(this InputSequence sequence, Point deltaVector)
     {
         sequence.Add(new MouseCommand(deltaVector.x, deltaVector.y, MouseMovement.SetPos));
-        return sequence;
-    }
-
-    public static InputSequence Parse(this InputSequence sequence, string text, List<CharOnKeyboard> language)
-    {
-        foreach (var command in new DirectKeyParser().Parse(text, language))
-            sequence.Add(command);
-        return sequence;
-    }
-
-    public static InputSequence VkeyParse(this InputSequence sequence, string text, List<CharOnKeyboard> language)
-    {
-        foreach (var command in new VirtualKeyParser().Parse(text, language))
-            sequence.Add(command);
         return sequence;
     }
 
