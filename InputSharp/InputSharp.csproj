@@ -11,6 +11,9 @@
         <PackageTags>automation, input, simulation</PackageTags>
         <PackageProjectUrl>https://github.com/AlfanyS/InputSharp</PackageProjectUrl>
         <PackageLicenseUrl>https://raw.githubusercontent.com/AlfanyS/InputSharp/master/LICENSE.md</PackageLicenseUrl>
+        <PackageVersion>1.0.1</PackageVersion>
+        <RepositoryUrl>https://github.com/AlfanyS/InputSharp</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
     </PropertyGroup>
 
 </Project>
