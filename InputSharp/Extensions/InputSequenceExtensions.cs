@@ -118,7 +118,7 @@ public static class InputSequenceExtensions
 
     public static InputSequence MouseMove(this InputSequence sequence, Point deltaVector)
     {
-        sequence.Add(new MouseCommand(deltaVector.x, deltaVector.y, MouseMovement.Move));
+        sequence.Add(new MouseCommand(deltaVector, MouseMovement.Move));
         return sequence;
     }
 
@@ -128,9 +128,9 @@ public static class InputSequenceExtensions
         return sequence;
     }
 
-    public static InputSequence SetCursorPos(this InputSequence sequence, Point deltaVector)
+    public static InputSequence SetCursorPos(this InputSequence sequence, Point position)
     {
-        sequence.Add(new MouseCommand(deltaVector.x, deltaVector.y, MouseMovement.SetPos));
+        sequence.Add(new MouseCommand(position, MouseMovement.SetPos));
         return sequence;
     }
 
@@ -140,8 +140,7 @@ public static class InputSequenceExtensions
     /// <param name="sequence">Source sequence.</param>
     /// <param name="count">Execution count.</param>
     /// <param name="commands">
-    ///     Func with empty <see cref="InputSequence" /> that will be executed <paramref name="count" />
-    ///     times.
+    ///     Func with empty <see cref="InputSequence" /> that will be executed <paramref name="count" /> times.
     /// </param>
     public static InputSequence Repeat(this InputSequence sequence, int count,
         Func<InputSequence, InputSequence> commands)

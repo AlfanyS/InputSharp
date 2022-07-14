@@ -1,4 +1,6 @@
-﻿namespace InputSharp.InputCommands;
+﻿using InputSharp.WinApi.SendInput;
+
+namespace InputSharp.InputCommands;
 
 public sealed class MouseCommand : InputCommand
 {
