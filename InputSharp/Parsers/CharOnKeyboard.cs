@@ -1,4 +1,6 @@
-﻿namespace InputSharp.Parsers;
+﻿using InputSharp.WinApi;
+
+namespace InputSharp.Parsers;
 
 public abstract record CharOnKeyboard(char symbol, bool requiresShift);
 
