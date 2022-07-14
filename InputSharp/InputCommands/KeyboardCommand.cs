@@ -55,10 +55,3 @@ public sealed class KeyboardCommand : InputCommand
         return $"{vKey} {ev}";
     }
 }
-
-public enum KeyboardEvent
-{
-    KeyDown,
-    KeyUp,
-    KeyClick
-}

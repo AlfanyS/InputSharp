@@ -1,4 +1,5 @@
 ﻿using InputSharp.InputCommands;
+using InputSharp.WinApi;
 
 namespace InputSharp.Parsers;
 

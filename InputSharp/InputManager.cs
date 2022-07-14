@@ -1,9 +1,15 @@
 ﻿using System.Runtime.InteropServices;
+using InputSharp.InputCommands;
+using InputSharp.WinApi;
+using InputSharp.WinApi.SendInput;
 
 namespace InputSharp;
 
 public static class InputManager
 {
+    private const int MouseMoveEvent = 1;
+    private const int MouseWheelEvent = 0x0800;
+    
     public static Point GetCursorPos()
     {
         NativeMethods.GetCursorPos(out var position);
@@ -198,7 +204,7 @@ public static class InputManager
                     {
                         dx = deltaX,
                         dy = deltaY,
-                        dwFlags = (uint) MouseEventF.Move,
+                        dwFlags = MouseMoveEvent,
                         dwExtraInfo = NativeMethods.GetMessageExtraInfo()
                     }
                 }
@@ -207,27 +213,7 @@ public static class InputManager
         NativeMethods.SendInput((uint) inputs.Length, inputs, Marshal.SizeOf(typeof(Input)));
     }
 
-    public static void MouseMove(Point deltaVector)
-    {
-        Input[] inputs =
-        {
-            new()
-            {
-                type = (int) InputType.Mouse,
-                u = new InputUnion
-                {
-                    mi = new MouseInput
-                    {
-                        dx = deltaVector.x,
-                        dy = deltaVector.y,
-                        dwFlags = (uint) MouseEventF.Move,
-                        dwExtraInfo = NativeMethods.GetMessageExtraInfo()
-                    }
-                }
-            }
-        };
-        NativeMethods.SendInput((uint) inputs.Length, inputs, Marshal.SizeOf(typeof(Input)));
-    }
+    public static void MouseMove(Point deltaVector) => MouseMove(deltaVector.x, deltaVector.y);
 
     public static void Mouse(MouseEvent button)
     {
@@ -285,7 +271,7 @@ public static class InputManager
                     mi = new MouseInput
                     {
                         mouseData = (uint) wheelMovement,
-                        dwFlags = (uint) MouseEventF.Wheel,
+                        dwFlags = MouseWheelEvent,
                         dwExtraInfo = NativeMethods.GetMessageExtraInfo()
                     }
                 }
